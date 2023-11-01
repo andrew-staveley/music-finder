@@ -1,0 +1,13 @@
+.songCard {
+    background-size: auto;
+    background-color: blanchedalmond;
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+};
+
+.albumImage {
+    text-align: center;
+}
