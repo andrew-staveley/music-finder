@@ -1,3 +1,9 @@
+/* 
+Submit Handler:
+    Takes in a search query via the search bar, sends a request to Apple's iTunes API, and
+    recieves a response with information about relevant songs to then append them to the website.
+*/
+
 let submitHandler = function(event) {
     event.preventDefault()
     let searchQuery = encodeURI(document.querySelector('#searchBar').value)
@@ -12,10 +18,10 @@ let submitHandler = function(event) {
 
                 //Album Image
                 let albumImageDiv = document.createElement('div');
-                albumImageDiv.className = 'albumImage'
                 let albumImage = document.createElement('img');
+                albumImageDiv.className = 'albumImage'
                 albumImage.src = `${value.artworkUrl100}`;
-                albumImage.alt = 'Album cover';
+                albumImage.alt = 'Album Cover';
                 albumImageDiv.appendChild(albumImage);
                 newSongCard.appendChild(albumImageDiv);
 
