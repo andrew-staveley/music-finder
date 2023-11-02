@@ -1,13 +1,48 @@
+body {
+    font-family: Arial;
+}
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+#inputForm {
+    text-align: center;
+}
+
 .songCard {
-    background-size: auto;
-    background-color: blanchedalmond;
+    background-size: cover;
+    background-color: rgb(229, 226, 226);
     float: left;
     margin-right: 10px;
     margin-left: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
-};
+}
 
 .albumImage {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.trackName {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    
+}
+
+a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+a:link {
+    color: black;
+    text-decoration: none;
 }
