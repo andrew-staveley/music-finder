@@ -75,4 +75,5 @@ let submitHandler = function(event) {
         });
 };
 
+//Submit event listener
 document.querySelector('#inputForm').addEventListener("submit", (submitHandler));
