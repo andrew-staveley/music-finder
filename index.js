@@ -98,11 +98,21 @@ let submitHandler = function(event) {
 
 
 let buttonHandler = function(event) {
-    let x = this.parentNode.id
-    let y = x.slice(-1)
-    let songName = document.querySelector(`trackName${y}`)
-    let artistName = document.querySelector(`artistName${y}`)
-    console.log(songName, artistName)
+    let x = this.parentNode.id;
+    let y = x.slice(-1);
+    let songName = document.getElementById(`trackName${y}`).innerText;
+    let artistName = document.getElementById(`artistName${y}`).innerText;
+    let songNameElement = document.createElement('p');
+    songNameElement.className = 'favoriteSongName';
+    let artistNameElement = document.createElement('p');
+    artistNameElement.className = 'favoriteArtistName';
+    let favoriteItem = document.createElement('div');
+    favoriteItem.className = 'favoriteItem';
+    songNameElement.innerText = songName;
+    artistNameElement.innerText = artistName;
+    favoriteItem.appendChild(songNameElement);
+    favoriteItem.appendChild(artistNameElement);
+    favoritesCollection.appendChild(favoriteItem);
 }
 
 let resetHandler = function(event) {
