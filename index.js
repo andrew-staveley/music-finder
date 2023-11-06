@@ -2,12 +2,14 @@
 Submit Handler:
     Takes in a search query via the search bar, sends a request to Apple's iTunes API, and
     recieves a response with information about relevant songs to then append them to the DOM.
+    As this is the initial part of the website, it also adds some of the event listeners used in
+    this program.
 */
 
 let submitHandler = function(event) {
     event.preventDefault()
     let searchQuery = encodeURI(document.querySelector('#searchBar').value)
-    fetch(`https://itunes.apple.com/search?term=${searchQuery}&entity=song&limit=10`)
+    fetch(`https://itunes.apple.com/search?term=${searchQuery}&entity=song&limit=9`)
         .then((response) => response.json())
         .then((data) => {
             let counter = 1
@@ -17,6 +19,7 @@ let submitHandler = function(event) {
                 let newSongCard = document.createElement('div');
                 newSongCard.className = `songCard`;
                 newSongCard.id = `songCard${counter}`;
+                newSongCard.addEventListener("mouseover", (handleMouseover))
 
                 //Album Image
                 let albumImageDiv = document.createElement('div');
@@ -77,26 +80,30 @@ let submitHandler = function(event) {
                 releaseYearDiv.appendChild(releaseYear);
                 newSongCard.appendChild(releaseYearDiv);
 
-                //Favorite Button
-                let favoriteDiv = document.createElement('div');
-                favoriteDiv.className = 'favoriteButton';
-                favoriteDiv.id = `favoriteButton${counter}`;
-                let favoriteButton = document.createElement('button');
-                favoriteButton.addEventListener("click", (buttonHandler))
-                favoriteButton.innerText = 'Favorite This Song!';
-                favoriteDiv.appendChild(favoriteButton);
-                newSongCard.appendChild(favoriteDiv);
+                //Add Button
+                let addDiv = document.createElement('div');
+                addDiv.className = 'addButton';
+                addDiv.id = `addButton${counter}`;
+                let addButton = document.createElement('button');
+                addButton.addEventListener("click", (buttonHandler))
+                addButton.innerText = 'Add This Song!';
+                addDiv.appendChild(addButton);
+                newSongCard.appendChild(addDiv);
 
                 //Card Push
                 artistCollection.appendChild(newSongCard);
                 
-                //Counter
+                //Counter: assigns a unique ID to each newly made song card to easily retrieve data.
                 counter++
             };
         });
 };
 
-
+/*
+Button Handler:
+    This event is triggered when the user clicks on the favorite button. This the in turn, will grab the
+    associated song name and artist, and then append them onto the playlist.
+*/
 let buttonHandler = function(event) {
     let x = this.parentNode.id;
     let y = x.slice(-1);
@@ -114,7 +121,12 @@ let buttonHandler = function(event) {
     favoriteItem.appendChild(artistNameElement);
     favoritesCollection.appendChild(favoriteItem);
 }
-
+/*
+Reset Handler:
+    This event is triggered when the reset button is selected. When selected, it deletes all nodes under
+    artistCollection. This also removes all the searched songs and clears the list. This does NOT clear
+    the contents of the playlist.
+*/
 let resetHandler = function(event) {
     event.preventDefault();
     let element = document.getElementById("artistCollection");
@@ -122,6 +134,11 @@ let resetHandler = function(event) {
         element.removeChild(element.firstChild);
     }
 }
+
+let handleMouseover = function(event) {
+    event.preventDefault()
+}
+
 //Event listeners
 document.querySelector('#inputForm').addEventListener("submit", (submitHandler));
 document.querySelector('#inputForm').addEventListener("reset", (resetHandler));
