@@ -1,3 +1,7 @@
+.box {
+    display: flex;
+}
+
 body {
     font-family: Arial;
 }
@@ -8,6 +12,7 @@ h1 {
 
 h2 {
     text-align: center;
+    display: center;
 }
 
 #inputForm {
@@ -15,13 +20,18 @@ h2 {
 }
 
 .songCard {
-    background-size: cover;
+    background-size: auto;
     background-color: rgb(229, 226, 226);
     float: left;
     margin-right: 10px;
     margin-left: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    height: 211px;
+    max-height: 211px;
+    width: 132px;
+    max-width: 132px;
+    text-overflow: ellipsis;
 }
 
 .albumImage {
@@ -34,7 +44,6 @@ h2 {
     font-weight: bold;
     text-decoration: none;
     color: black;
-    
 }
 
 a:visited {
@@ -53,4 +62,12 @@ a:link {
 
 .artistName {
     font-style: italic;
+}
+
+section {
+    width: 70%;
+}
+
+aside {
+    width: 30%;
 }

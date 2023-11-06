@@ -2,19 +2,26 @@
 <html lang='en'>
     <head>
         <link rel="stylesheet" href="style.css">
-        <title>Apple Music Song Finder</title>
+        <title>Playlit Builder 5000</title>
     </head>
     <body>
-        <h1 id="title">Hello and Welcome to my Website</h1>
-        <h2>Please search for a song to recieve more information!</h2>
+        <h1 id="title">Playlist Builder 5000</h1>
+        <h2>Please search for a song to add it onto the Playlist!</h2>
         <form id="inputForm">
             <input id="searchBar" type="text"></input>
             <input id="submitButton" type="submit"></input>
             <input id="clearButton" type="reset"></input>
         </form>
-        <div id="artistCollection">
-        </div>
-        <div id="favoritesCollection">
+        <div class="box">
+            <section>
+                <div id="artistCollection">
+                </div>
+            </section>
+            <aside>
+                <h2>Current Playlist</h2>
+                <div id="favoritesCollection">
+                </div>
+            </aside>
         </div>
         <script src="index.js"></script>
     </body>
