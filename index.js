@@ -128,6 +128,7 @@ let buttonHandler = function(event) {
     favoriteItem.appendChild(artistNameElement);
     favoritesCollection.appendChild(favoriteItem);
 }
+
 /*
 Reset Handler:
     This event is triggered when the reset button is selected. When selected, it deletes all nodes under
@@ -142,6 +143,11 @@ let resetHandler = function(event) {
     }
 }
 
+/*
+Handle Mouseover:
+    This event is triggered when a mouseover is detected over a song card. When that happens, it will play a 10
+    preview of the song, to help determine the user if that is the correct song.
+*/
 let handleMouseover = function(event) {
     console.log(event)
     event.preventDefault();
