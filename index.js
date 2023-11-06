@@ -13,7 +13,7 @@ let submitHandler = function(event) {
         .then((response) => response.json())
         .then((data) => {
             let counter = 1
-            //console.log(data)
+            console.log(data)
             for(let value of data.results) {
                 let artistCollection = document.querySelector('#artistCollection');
                 let newSongCard = document.createElement('div');
@@ -90,6 +90,13 @@ let submitHandler = function(event) {
                 addDiv.appendChild(addButton);
                 newSongCard.appendChild(addDiv);
 
+                //Preview URL: Hidden from website
+                let preview = document.createElement('audio');
+                preview.className = 'previewUrl';
+                preview.id = `previewUrl${counter}`;
+                preview.src = value.previewUrl;
+                newSongCard.appendChild(preview);
+
                 //Card Push
                 artistCollection.appendChild(newSongCard);
                 
@@ -101,7 +108,7 @@ let submitHandler = function(event) {
 
 /*
 Button Handler:
-    This event is triggered when the user clicks on the favorite button. This the in turn, will grab the
+    This event is triggered when the user clicks on the add button. This the in turn, will grab the
     associated song name and artist, and then append them onto the playlist.
 */
 let buttonHandler = function(event) {
@@ -136,7 +143,14 @@ let resetHandler = function(event) {
 }
 
 let handleMouseover = function(event) {
-    event.preventDefault()
+    console.log(event)
+    event.preventDefault();
+    let x = this.id.slice(-1);
+    let preview = document.getElementById(`previewUrl${x}`);
+    preview.play();
+    setTimeout(function() {
+        preview.pause();
+    }, 10000)
 }
 
 //Event listeners
