@@ -9,12 +9,12 @@ Submit Handler:
 let submitHandler = function(event) {
     event.preventDefault()
     let searchQuery = encodeURI(document.querySelector('#searchBar').value)
-    fetch(`https://itunes.apple.com/search?term=${searchQuery}&entity=song&limit=9`)
+    fetch(`https://itunes.apple.com/search?term=${searchQuery}&entity=song&limit=16`)
         .then((response) => response.json())
         .then((data) => {
             let counter = 1
-            console.log(data)
-            for(let value of data.results) {
+            //console.log(data)
+            data.results.forEach((value) => {
                 let artistCollection = document.querySelector('#artistCollection');
                 let newSongCard = document.createElement('div');
                 newSongCard.className = `songCard`;
@@ -102,7 +102,7 @@ let submitHandler = function(event) {
                 
                 //Counter: assigns a unique ID to each newly made song card to easily retrieve data.
                 counter++
-            };
+            });
         });
 };
 
@@ -149,7 +149,6 @@ Handle Mouseover:
     preview of the song, to help determine the user if that is the correct song.
 */
 let handleMouseover = function(event) {
-    console.log(event)
     event.preventDefault();
     let x = this.id.slice(-1);
     let preview = document.getElementById(`previewUrl${x}`);
