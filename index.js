@@ -5,14 +5,17 @@ Submit Handler:
     As this is the initial part of the website, it also adds some of the event listeners used in
     this program.
 */
-
 let submitHandler = function(event) {
-    event.preventDefault()
-    let searchQuery = encodeURI(document.querySelector('#searchBar').value)
+    event.preventDefault();
+    let element = document.getElementById("artistCollection");
+    while (element.firstChild) {
+    element.removeChild(element.firstChild);
+    };
+    let searchQuery = encodeURI(document.querySelector('#searchBar').value);
     fetch(`https://itunes.apple.com/search?term=${searchQuery}&entity=song&limit=16`)
         .then((response) => response.json())
         .then((data) => {
-            let counter = 1
+            let counter = 1;
             //console.log(data)
             data.results.forEach((value) => {
                 let artistCollection = document.querySelector('#artistCollection');
@@ -109,25 +112,24 @@ let submitHandler = function(event) {
 /*
 Button Handler:
     This event is triggered when the user clicks on the add button. This the in turn, will grab the
-    associated song name and artist, and then append them onto the playlist.
+    associated song name and artist, and then append them onto the playlist. This also includes a remove 
+    button to remove songs off playlist.
 */
 let buttonHandler = function(event) {
     let x = this.parentNode.id;
     let y = x.slice(-1);
     let songName = document.getElementById(`trackName${y}`).innerText;
     let artistName = document.getElementById(`artistName${y}`).innerText;
-    let songNameElement = document.createElement('p');
-    songNameElement.className = 'favoriteSongName';
-    let artistNameElement = document.createElement('p');
-    artistNameElement.className = 'favoriteArtistName';
-    let favoriteItem = document.createElement('div');
-    favoriteItem.className = 'favoriteItem';
-    songNameElement.innerText = songName;
-    artistNameElement.innerText = artistName;
-    favoriteItem.appendChild(songNameElement);
-    favoriteItem.appendChild(artistNameElement);
-    favoritesCollection.appendChild(favoriteItem);
-}
+    let removeButton = document.createElement('button');
+    removeButton.innerHTML = 'X';
+    removeButton.className = 'removeButton';
+    removeButton.addEventListener('click', removeHandler);
+    let playlistElement = document.createElement('li');
+    playlistElement.className = 'playlistItem';
+    playlistElement.innerHTML = `${songName} - ${artistName}`;
+    playlistElement.appendChild(removeButton);
+    playlistCollection.appendChild(playlistElement);
+};
 
 /*
 Reset Handler:
@@ -140,8 +142,8 @@ let resetHandler = function(event) {
     let element = document.getElementById("artistCollection");
     while (element.firstChild) {
         element.removeChild(element.firstChild);
-    }
-}
+    };
+};
 
 /*
 Handle Mouseover:
@@ -155,8 +157,17 @@ let handleMouseover = function(event) {
     preview.play();
     setTimeout(function() {
         preview.pause();
-    }, 10000)
-}
+    }, 10000);
+};
+
+/*
+Remove Handler:
+
+*/
+let removeHandler = function(event) {
+    event.preventDefault()
+    this.parentNode.remove()
+};
 
 //Event listeners
 document.querySelector('#inputForm').addEventListener("submit", (submitHandler));
