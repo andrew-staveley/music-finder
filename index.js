@@ -23,7 +23,7 @@ let submitHandler = function(event) {
                 let newSongCard = document.createElement('div');
                 newSongCard.className = `songCard`;
                 newSongCard.id = `songCard${counter}`;
-                newSongCard.addEventListener("mouseover", (handleMouseover))
+                //newSongCard.addEventListener("mouseover", (handleMouseover))
 
                 //Album Image
                 let albumImageDiv = document.createElement('div');
@@ -164,13 +164,40 @@ let handleMouseover = function(event) {
 
 /*
 Remove Handler:
-
+    This function aims to remove a selected playlsit item.
 */
 let removeHandler = function(event) {
     event.preventDefault()
     this.parentNode.remove()
 };
 
+/*
+Preview Handlers:
+    This function toggles mouseover song previews.
+*/
+let previewHandlerOn = function(event) {
+    let cards = document.querySelectorAll('.songCard');
+    for (let card of cards) {
+        card.addEventListener('mouseover', handleMouseover);
+    };
+    let offButton = document.getElementById('previewOff')
+    offButton.className = 'toggleButton'
+    let onButton = document.getElementById('previewOn')
+    onButton.className = 'hidden'
+};
+let previewHandlerOff = function(event) {
+    let cards = document.querySelectorAll('.songCard');
+    for (let card of cards) {
+        card.removeEventListener('mouseover', handleMouseover);
+    };
+    let offButton = document.getElementById('previewOff')
+    offButton.className = 'hidden'
+    let onButton = document.getElementById('previewOn')
+    onButton.className = 'toggleButton'
+};
+
 //Event listeners
 document.querySelector('#inputForm').addEventListener("submit", (submitHandler));
 document.querySelector('#inputForm').addEventListener("reset", (resetHandler));
+document.querySelector('#previewOn').addEventListener("click", (previewHandlerOn));
+document.querySelector('#previewOff').addEventListener("click", (previewHandlerOff));
