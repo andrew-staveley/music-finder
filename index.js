@@ -6,12 +6,14 @@ Submit Handler:
     this program.
 */
 let submitHandler = function(event) {
-    let searchBar = document.getElementById('searchBar')
     event.preventDefault();
+    let searchBar = document.getElementById('searchBar')
     let element = document.getElementById("artistCollection");
     while (element.firstChild) {
     element.removeChild(element.firstChild);
     };
+    let previewButtons = document.getElementById('previewOn')
+    previewButtons.className = 'toggleButton'
     let searchQuery = encodeURI(document.querySelector('#searchBar').value);
     fetch(`https://itunes.apple.com/search?term=${searchQuery}&entity=song&limit=16`)
         .then((response) => response.json())
@@ -145,6 +147,8 @@ let resetHandler = function(event) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     };
+    let toggleButtons = document.querySelector('.toggleButton')
+    toggleButtons.className = 'hidden'
 };
 
 /*
@@ -164,7 +168,7 @@ let handleMouseover = function(event) {
 
 /*
 Remove Handler:
-    This function aims to remove a selected playlsit item.
+    This function aims to remove a selected playlist item.
 */
 let removeHandler = function(event) {
     event.preventDefault()
