@@ -6,6 +6,7 @@ Submit Handler:
     this program.
 */
 let submitHandler = function(event) {
+    let searchBar = document.getElementById('searchBar')
     event.preventDefault();
     let element = document.getElementById("artistCollection");
     while (element.firstChild) {
@@ -107,6 +108,7 @@ let submitHandler = function(event) {
                 counter++
             });
         });
+    searchBar.value = '';
 };
 
 /*
