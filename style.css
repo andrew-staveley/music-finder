@@ -27,6 +27,18 @@ aside {
     width: 30%;
 }
 
+#previewOn {
+    margin-top: 10px;
+}
+
+#previewOff {
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
 /* Song Card Styling */
 
 .songCard {
