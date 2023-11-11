@@ -12,8 +12,10 @@ let submitHandler = function(event) {
     while (element.firstChild) {
     element.removeChild(element.firstChild);
     };
-    let previewButtons = document.getElementById('previewOn')
-    previewButtons.className = 'toggleButton'
+    let previewButtonOn = document.getElementById('previewOn');
+    let previewButtonOff = document.getElementById('previewOff');
+    previewButtonOn.className = 'toggleButton'
+    previewButtonOff.className = 'hidden'
     let searchQuery = encodeURI(document.querySelector('#searchBar').value);
     fetch(`https://itunes.apple.com/search?term=${searchQuery}&entity=song&limit=16`)
         .then((response) => response.json())
