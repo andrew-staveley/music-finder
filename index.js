@@ -2,8 +2,8 @@
 Submit Handler:
     Takes in a search query via the search bar, sends a request to Apple's iTunes API, and
     recieves a response with information about relevant songs to then append them to the DOM.
-    As this is the initial part of the website, it also adds some of the event listeners used in
-    this program.
+    As this is the initial part of the website, it also adds some of the event listeners and 
+    other essential parts of this program.
 */
 let submitHandler = function(event) {
     event.preventDefault();
@@ -27,7 +27,6 @@ let submitHandler = function(event) {
                 let newSongCard = document.createElement('div');
                 newSongCard.className = `songCard`;
                 newSongCard.id = `songCard${counter}`;
-                //newSongCard.addEventListener("mouseover", (handleMouseover))
 
                 //Album Image
                 let albumImageDiv = document.createElement('div');
@@ -156,7 +155,7 @@ let resetHandler = function(event) {
 /*
 Handle Mouseover:
     This event is triggered when a mouseover is detected over a song card. When that happens, it will play a 10
-    preview of the song, to help determine the user if that is the correct song.
+    preview of the song, to help determine the user if that is the correct song, when previews are activated.
 */
 let handleMouseover = function(event) {
     event.preventDefault();
