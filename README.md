@@ -9,6 +9,6 @@ All music, album art, and names are property of the original artist, each album,
 
 Playlist Builder 5000
 
-This project allows for a user to search for a song, and add it too the local playlist within the browser.
+This project allows for a user to search for a song, and add it to the local playlist within the browser.
 
 When a user searches for a song, the application takes the search query and sends it to the Apple Music API, which will then return an array with 16 objects, one for each song result. These then get added into the search area where the user can decide the exact song thier looking for and add it directly to their playlist. The program also supports mouseover previews on each song. When the previews are turned on, any mouseover will play a 10 second snippit of the song. 
